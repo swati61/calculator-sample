@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+   <meta name="viewport" initial-scale="1.0" content="width=device-width" user-scalable="yes"/>
+
+   <title>Calculator UI</title>   
+
+   <script src="libs/angular.min.js"></script>
+
+   <link rel="stylesheet" href="css/styles.css"/>
+
+   <script src="controller/calculator.js" type="text/javascript"></script>
+
+  </head>
+
+  <body ng-app="calculatorPrj">
+
+   <section class="calculatorBase" ng-controller="MyCtrl">
+
+     <article class="displayArea" ><span name="output" ng-class="{'long': (output.length > 14), 'verylong': (output.length > 18)}" ng-model="numLimit">{{output | limitTo: numLimit}}</span></article>
+
+     <article class="buttonsArea">
+
+     <!-- Operators button -->
+
+       <button type="button" class="calc-button" ng-click='operate("/")' >÷</button>
+
+       <button type="button" class="calc-button" ng-click='operate("*")' >*</button>
+
+       <button type="button" class="calc-button" ng-click='operate("-")' >-</button>
+
+       <button type="button" class="calc-button" ng-click='operate("+")' >+</button>
+
+
+
+     <!-- Number button -->
+
+      <button class="calc-button" ng-disabled="isDisabled" ng-model="isDisabled" ng-click="sendValue($index)" ng-repeat="n in [0,1,2,3,4,5,6,7,8,9]">{{n}}</button> 
+
+            
+
+     <!-- Opertaion button -->  
+
+      <button type="button" ng-disabled="isDisabled" ng-model="isDisabled" class="calc-button" ng-click="updateOutput('.')">.</button>
+
+      <button type="button" class="calc-button" ng-click="disableClick(1)">X</button>      
+
+    <button type="button" ng-disabled="isDisabled" ng-model="isDisabled" class="calc-button" ng-click="resetDisplayBox()">AC</button>
+
+      <button type="button" ng-disabled="isDisabled" ng-model="isDisabled" class="calc-button btnEquals" ng-click='equal()'>=</button>
+
+     </article>
+
+   </section>
+
+  </body>
+
+</html>
